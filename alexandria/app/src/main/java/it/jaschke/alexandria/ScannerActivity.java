@@ -1,5 +1,6 @@
 package it.jaschke.alexandria;
 
+import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -24,6 +25,7 @@ public class ScannerActivity extends ActionBarActivity implements ZXingScannerVi
     private static final String AUTO_FOCUS_STATE = "AUTO_FOCUS_STATE";
     private static final String SELECTED_FORMATS = "SELECTED_FORMATS";
     private static final String CAMERA_ID = "CAMERA_ID";
+    static final String ISBN_CODE = "ISBN";
     private ZXingScannerView mScannerView;
     private boolean mFlash;
     private boolean mAutoFocus;
@@ -84,7 +86,8 @@ public class ScannerActivity extends ActionBarActivity implements ZXingScannerVi
             r.play();
         } catch (Exception e) {
         }
-        showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString());
+        setResult(RESULT_OK, new Intent().putExtra(ISBN_CODE, rawResult.getText()));
+        finish();
     }
 
     public void showMessageDialog(String message) {
