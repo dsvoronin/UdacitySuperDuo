@@ -76,13 +76,13 @@ public class BookService extends IntentService {
             return;
         }
 
-        Cursor bookEntry = getContentResolver().query(
-                AlexandriaContract.BookEntry.buildBookUri(Long.parseLong(ean)),
-                null, // leaving "columns" null just returns all the columns.
-                null, // cols for "where" clause
-                null, // values for "where" clause
-                null  // sort order
-        );
+        Cursor bookEntry = getContentResolver()
+                .query(AlexandriaContract.BookEntry.buildBookUri(Long.parseLong(ean)),
+                        null, // leaving "columns" null just returns all the columns.
+                        null, // cols for "where" clause
+                        null, // values for "where" clause
+                        null  // sort order
+                );
 
         if (bookEntry.getCount() > 0) {
             bookEntry.close();
@@ -112,7 +112,7 @@ public class BookService extends IntentService {
             urlConnection.connect();
 
             InputStream inputStream = urlConnection.getInputStream();
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             if (inputStream == null) {
                 return;
             }
