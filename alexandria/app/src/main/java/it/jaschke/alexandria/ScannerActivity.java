@@ -1,13 +1,11 @@
 package it.jaschke.alexandria;
 
 import android.content.Intent;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -80,12 +78,7 @@ public class ScannerActivity extends ActionBarActivity implements ZXingScannerVi
 
     @Override
     public void handleResult(Result rawResult) {
-        try {
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-            r.play();
-        } catch (Exception e) {
-        }
+        Log.d("Scanner", rawResult.getText());
         setResult(RESULT_OK, new Intent().putExtra(ISBN_CODE, rawResult.getText()));
         finish();
     }
