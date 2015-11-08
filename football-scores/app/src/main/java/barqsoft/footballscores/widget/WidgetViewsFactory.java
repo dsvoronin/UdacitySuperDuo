@@ -14,6 +14,7 @@ import java.util.Date;
 
 import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.R;
+import barqsoft.footballscores.Utilies;
 import barqsoft.footballscores.scoresAdapter;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -69,13 +70,20 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
         cursor.moveToPosition(position);
 
         String home = cursor.getString(scoresAdapter.COL_HOME);
-        String score = cursor.getString(scoresAdapter.COL_HOME_GOALS) + " - " + cursor.getString(scoresAdapter.COL_AWAY_GOALS);
         String away = cursor.getString(scoresAdapter.COL_AWAY);
+
+        int homeGoals = cursor.getInt(scoresAdapter.COL_HOME_GOALS);
+        int awayGoals = cursor.getInt(scoresAdapter.COL_AWAY_GOALS);
+
+        String score = Utilies.getScores(homeGoals, awayGoals);
+
+        String matchTime = cursor.getString(scoresAdapter.COL_MATCHTIME);
 
         final RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.widget_list_item);
         remoteView.setTextViewText(R.id.home_team, home);
         remoteView.setTextViewText(R.id.score, score);
         remoteView.setTextViewText(R.id.away_team, away);
+        remoteView.setTextViewText(R.id.time, matchTime);
 
         return remoteView;
     }

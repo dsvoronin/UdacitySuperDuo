@@ -3,28 +3,60 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#fff"
                 android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/score"
+    <LinearLayout
+        android:id="@+id/central_block"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="8dp"
-        tools:text="2 - 1"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif"
+            android:textColor="#333"
+            android:textSize="18sp"
+            tools:text="2 - 1"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/score"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif"
+            android:textSize="12sp"
+            android:textColor="#666"
+            tools:text="17:00"/>
+
+    </LinearLayout>
 
     <TextView
-        tools:text="Torino FC"
         android:id="@+id/home_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/score"/>
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/central_block"
+        android:fontFamily="sans-serif"
+        android:gravity="right"
+        android:textColor="#333"
+        tools:text="Torino FC"/>
 
     <TextView
         android:id="@+id/away_team"
-        tools:text="FC Internazionale Milan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/score"/>
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/central_block"
+        android:fontFamily="sans-serif"
+        android:gravity="left"
+        android:textColor="#333"
+        tools:text="FC Internazionale Milan"/>
 
 </RelativeLayout>

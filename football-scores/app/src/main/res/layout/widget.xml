@@ -8,8 +8,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/green13"
         android:elevation="4dp"
-        android:text="FOOTBALL SCORES. TODAY"/>
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="FOOTBALL SCORES. TODAY"
+        android:textColor="#333"/>
 
     <ListView
         android:id="@+id/widget_list"
