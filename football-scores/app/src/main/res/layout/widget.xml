@@ -12,7 +12,7 @@
         android:elevation="4dp"
         android:gravity="center"
         android:padding="8dp"
-        android:text="FOOTBALL SCORES. TODAY"
+        android:text="@string/widget_title"
         android:textColor="#333"/>
 
     <ListView
