@@ -80,6 +80,12 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        restartLoader();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
 
