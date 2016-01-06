@@ -25,6 +25,7 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
     private ListView bookList;
     private int position = ListView.INVALID_POSITION;
     private EditText searchText;
+    private Cursor cursor;
 
     private final int LOADER_ID = 10;
 
@@ -38,7 +39,7 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Cursor cursor = getActivity()
+        cursor = getActivity()
                 .getContentResolver()
                 .query(
                         AlexandriaContract.BookEntry.CONTENT_URI,
@@ -74,12 +75,18 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
             }
         });
 
+
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
         //cursor was not closed
         if (cursor != null) {
             cursor.close();
         }
-
-        return rootView;
     }
 
     private void restartLoader() {
