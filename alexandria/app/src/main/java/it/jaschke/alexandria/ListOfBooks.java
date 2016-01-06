@@ -82,6 +82,10 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public void onResume() {
         super.onResume();
+
+        //ERROR FIXED:  after deleting a book the list stays the same and lead to error state(you can go to empty details)
+        //this is not the most elegant, but working solution to deal with it
+        //better one: send broadcast from service after successful deletion, listen here and restart only on callback
         restartLoader();
     }
 
@@ -89,7 +93,8 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
     public void onDestroyView() {
         super.onDestroyView();
 
-        //cursor was not closed
+        //ERROR FIXED: cursor was closed in onCreateView, but bookListAdapter's bindView method need to access cursor data
+        //through all lifecycle of this fragment's view, so i moved closing code here
         if (cursor != null) {
             cursor.close();
         }
